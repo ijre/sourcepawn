@@ -394,8 +394,8 @@ class SourcePawn(object):
         self.dynamic_libsp[cxx.target.arch] = cppnode.binary
 
     def BuildSpcomp(self, builder):
-        binary = self.root.Program(builder, 'spcomp')
-        
+        binary = self.root.Program(builder, 'spcomp64')
+
         self.SetupBinForArch(binary, builder)
 
         binary.sources = [
