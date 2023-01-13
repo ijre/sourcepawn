@@ -76,6 +76,8 @@
 #if defined(SOURCEMOD_BUILD)
 #    include <sourcemod_version.h>
 #    define SOURCEPAWN_VERSION SOURCEMOD_VERSION
+#else
+#    define SOURCEPAWN_VERSION "1.11-IJRE_CUSTOM"
 #endif
 
 #ifdef __EMSCRIPTEN__
