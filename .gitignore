@@ -39,3 +39,4 @@ obj-*/
 *.pyc
 
 .gdb_history
+.vscode
