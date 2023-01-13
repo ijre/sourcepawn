@@ -292,6 +292,13 @@ ErrorReport::create_va(int number, int fileno, int lineno, va_list ap)
         report.filename = cc.options()->source_files[0];
     report.type = DeduceErrorType(number);
 
+  if (report.type == ErrorType::Suppressed)
+  {
+    report.message = "";
+    report.number = -1;
+    return report;
+  }
+
     const char* prefix = GetErrorTypePrefix(report.type);
     const char* format = GetMessageForNumber(report.number);
 
