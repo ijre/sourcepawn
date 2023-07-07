@@ -237,7 +237,11 @@ MessageBuilder::~MessageBuilder()
     }
 
     report.message = out.str();
-    report_error(std::move(report));
+
+    if (report.type != ErrorType::Suppressed)
+    {
+      report_error(std::move(report));
+    }
 }
 
 int
