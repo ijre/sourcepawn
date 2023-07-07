@@ -149,7 +149,11 @@ error(int number, ...)
     ErrorReport report = ErrorReport::infer_va(number, ap);
     va_end(ap);
 
-    report_error(std::move(report));
+    if (report.type != ErrorType::Suppressed)
+    {
+      report_error(std::move(report));
+    }
+
     return 0;
 }
 
@@ -253,7 +257,12 @@ error(const token_pos_t& where, int number, ...)
     va_end(ap);
 
     report.lineno = where.line;
-    report_error(std::move(report));
+
+    if (report.type != ErrorType::Suppressed)
+    {
+      report_error(std::move(report));
+    }
+
     return 0;
 }
 
@@ -263,7 +272,12 @@ error_va(const token_pos_t& where, int number, va_list ap)
     ErrorReport report = ErrorReport::create_va(number, where.file, where.line, ap);
 
     report.lineno = where.line;
-    report_error(std::move(report));
+
+    if (report.type != ErrorType::Suppressed)
+    {
+      report_error(std::move(report));
+    }
+
     return 0;
 }
 
@@ -275,7 +289,11 @@ error(symbol* sym, int number, ...)
     ErrorReport report = ErrorReport::create_va(number, sym->fnumber, sym->lnumber, ap);
     va_end(ap);
 
-    report_error(std::move(report));
+    if (report.type != ErrorType::Suppressed)
+    {
+      report_error(std::move(report));
+    }
+
     return 0;
 }
 
